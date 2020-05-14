@@ -8,7 +8,6 @@ tictactoe-js
 
 - bootstrap
 - jquery
-- webpacker
 - git
 
 bootstrap, jquery, webpacker and git was used on this project.
@@ -23,7 +22,7 @@ this project can be found in https://github.com/firmoholanda/firmoholanda.github
 ### ✨ [live version](https://firmoholanda.github.io)
 
 <a href="https://firmoholanda.github.io/" target="_blank">
-    <img alt="app image" src=""/>
+    <img alt="app image" src="https://github.com/firmoholanda/tictactoe-js/blob/release/img/app-screenshot.png"/>
 </a>
 
 
@@ -71,7 +70,9 @@ contributions, issues, and feature requests are welcome!<br/>feel free to check 
 ## 🤖 contributor
 
 
-firmo holanda - [GitHub](https://github.com/firmoholanda)
+firmo holanda - [github](https://github.com/firmoholanda)
+
+eduardo bonilla - [github](https://github.com/Usagib)
 
 
 
