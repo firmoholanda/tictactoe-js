@@ -49,7 +49,7 @@ const gameBoard = () => {
     return isDraw;
   }
 
-  return {init, setCell, checkWinCondition, checkDrawCondition}
+  return { init, setCell, checkWinCondition, checkDrawCondition}
 }
 
 const gameLogic = () => {
@@ -61,7 +61,7 @@ const gameLogic = () => {
     newGameBoard.init(); //sets baord to null
     player1 = newPlayer(document.getElementById('player01Name').value, 'X', true);
     player2 = newPlayer(document.getElementById('player02Name').value, 'O', false);
-    document.getElementById('info').innerText = player1.playerName + ' move';
+    document.getElementById('info').innerText = player1.playerName + '`s move';
     setTile();
   }
 
@@ -81,86 +81,42 @@ const gameLogic = () => {
     [player1.playerTurn, player2.playerTurn] = [player2.playerTurn, player1.playerTurn];
     
     if (player1.playerTurn) {
-      document.getElementById('info').innerText = player1.playerName + ' move';
+      document.getElementById('info').innerText = player1.playerName + '`s move';
     } else {
-      document.getElementById('info').innerText = player2.playerName + ' move';
+      document.getElementById('info').innerText = player2.playerName + '`s move';
     }
     //console.log('player1 ' + player1.playerTurn);
     //console.log('player2 ' + player2.playerTurn);
   }
 
   const moveTile = () => {
-    c0.addEventListener('click', () => {
-      console.log(player1.playerTurn);
-      player1.playerTurn ? c0.innerHTML = 'X' : c0.innerHTML ='O';
-      newGameBoard.setCell(0, c0.innerHTML);
-      turnEnd();
-      checkResult();
-    });
+    function addTableCellEventListener(cell, index) {
+      cell.addEventListener('click', () => {
+        player1.playerTurn ? cell.innerHTML = 'X' : cell.innerHTML = 'O';
+        newGameBoard.setCell(index, cell.innerHTML);
+        turnEnd();
+        checkResult();
+        cell.style.pointerEvents = "none";
+      });
+    }
 
-    c1.addEventListener('click', () => {
-      console.log(player1.playerTurn);
-      player1.playerTurn ? c1.innerHTML = 'X' : c1.innerHTML ='O';
-      newGameBoard.setCell(1, c1.innerHTML);
-      turnEnd();
-      checkResult();
-    });
+    addTableCellEventListener(c0, 0);
+    addTableCellEventListener(c1, 1);
+    addTableCellEventListener(c2, 2);
+    addTableCellEventListener(c3, 3);
+    addTableCellEventListener(c4, 4);
+    addTableCellEventListener(c5, 5);
+    addTableCellEventListener(c6, 6);
+    addTableCellEventListener(c7, 7);
+    addTableCellEventListener(c8, 8);
 
-    c2.addEventListener('click', () => {
-      console.log(player1.playerTurn);
-      player1.playerTurn ? c2.innerHTML = 'X' : c2.innerHTML ='O';
-      newGameBoard.setCell(2, c2.innerHTML);
-      turnEnd();
-      checkResult();
-    });
-    c3.addEventListener('click', () => {
-      console.log(player1.playerTurn);
-      player1.playerTurn ? c3.innerHTML = 'X' : c3.innerHTML ='O';
-      newGameBoard.setCell(3, c3.innerHTML);
-      turnEnd();
-      checkResult();
-    });
-    c4.addEventListener('click', () => {
-      console.log(player1.playerTurn);
-      player1.playerTurn ? c4.innerHTML = 'X' : c4.innerHTML ='O';
-      newGameBoard.setCell(4, c4.innerHTML);
-      turnEnd();
-      checkResult();
-    });
-    c5.addEventListener('click', () => {
-      console.log(player1.playerTurn);
-      player1.playerTurn ? c5.innerHTML = 'X' : c5.innerHTML ='O';
-      newGameBoard.setCell(5, c5.innerHTML);
-      turnEnd();
-      checkResult();
-    });
-    c6.addEventListener('click', () => {
-      console.log(player1.playerTurn);
-      player1.playerTurn ? c6.innerHTML = 'X' : c6.innerHTML ='O';
-      newGameBoard.setCell(6, c6.innerHTML);
-      turnEnd();
-      checkResult();
-    });
-    c7.addEventListener('click', () => {
-      console.log(player1.playerTurn);
-      player1.playerTurn ? c7.innerHTML = 'X' : c7.innerHTML ='O';
-      newGameBoard.setCell(7, c7.innerHTML);
-      turnEnd();
-      checkResult();
-    });
-    c8.addEventListener('click', () => {
-      console.log(player1.playerTurn);
-      player1.playerTurn ? c8.innerHTML = 'X' : c8.innerHTML ='O';
-      newGameBoard.setCell(8, c8.innerHTML);
-      turnEnd();
-      checkResult();
-    });
   }
 
   const checkResult = () => {
     let thisWin = newGameBoard.checkWinCondition();
     let thisDraw = newGameBoard.checkDrawCondition();
     if (thisWin) {
+      newGameBoard.init();
       document.getElementById('winner-text').innerText = 'Winner!';
     }
     if (thisDraw){
