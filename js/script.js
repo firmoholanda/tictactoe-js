@@ -37,7 +37,7 @@ const gameBoard = () => {
       if (board[2] != null && board[2] == board[5] && board[5] == board[8]) isWin = true;
       if (board[0] != null && board[0] == board[4] && board[4] == board[8]) isWin = true;
       if (board[6] != null && board[6] == board[4] && board[4] == board[2]) isWin = true;
-      (isWin) ? console.log("isiwn true") : console.log("iswin false");
+      (isWin) ? console.log("iswin true") : console.log("iswin false");
     return isWin;
   }
 
@@ -45,6 +45,7 @@ const gameBoard = () => {
     let isDraw = true;
     if (board.includes(null)) isDraw = false;
     (isDraw) ? console.log("isdraw true") : console.log("isdrawFalse");
+
     return isDraw;
   }
 
@@ -60,12 +61,8 @@ const gameLogic = () => {
     newGameBoard.init(); //sets baord to null
     player1 = newPlayer(document.getElementById('player01Name').value, 'X', true);
     player2 = newPlayer(document.getElementById('player02Name').value, 'O', false);
-  }
-
-  const turnEnd = () => {
-    [player1.playerTurn, player2.playerTurn] = [player2.playerTurn, player1.playerTurn];
-    console.log('player1 ' + player1.playerTurn);
-    console.log('player2 ' + player2.playerTurn);
+    document.getElementById('info').innerText = player1.playerName + ' move';
+    setTile();
   }
 
   const setTile = () => {
@@ -80,9 +77,19 @@ const gameLogic = () => {
     c8 = document.getElementById('cell8');
   }
 
-  const moveTile = () => {
-    setTile();
+  const turnEnd = () => {
+    [player1.playerTurn, player2.playerTurn] = [player2.playerTurn, player1.playerTurn];
+    
+    if (player1.playerTurn) {
+      document.getElementById('info').innerText = player1.playerName + ' move';
+    } else {
+      document.getElementById('info').innerText = player2.playerName + ' move';
+    }
+    //console.log('player1 ' + player1.playerTurn);
+    //console.log('player2 ' + player2.playerTurn);
+  }
 
+  const moveTile = () => {
     c0.addEventListener('click', () => {
       console.log(player1.playerTurn);
       player1.playerTurn ? c0.innerHTML = 'X' : c0.innerHTML ='O';
@@ -157,6 +164,7 @@ const gameLogic = () => {
       document.getElementById('winner-text').innerText = 'Winner!';
     }
     if (thisDraw){
+      document.getElementById('info').innerText = 'game over';
       document.getElementById('winner-text').innerText = 'Draw!';
     }
     return status;
