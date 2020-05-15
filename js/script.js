@@ -47,16 +47,16 @@ const gameBoard = () => {
     return isDraw;
   };
 
-  const blockCells = () => {
+  function blockCells() {
     const cells = document.querySelectorAll('.cell');
     [...cells].forEach(cell => cell.style.pointerEvents = 'none');
   };
 
-  return { 
-    init, 
-    setCell, 
-    checkWinCondition, 
-    checkDrawCondition, 
+  return {
+    init,
+    setCell,
+    checkWinCondition,
+    checkDrawCondition,
     blockCells
   };
 };
@@ -64,15 +64,8 @@ const gameBoard = () => {
 const gameLogic = () => {
   let player1;
   let player2;
+  let c0, c1, c2, c3, c4, c5, c6, c7, c8;
   const newGameBoard = gameBoard();
-
-  const init = () => {
-    newGameBoard.init();
-    player1 = newPlayer(document.getElementById('player01Name').value, 'X', true);
-    player2 = newPlayer(document.getElementById('player02Name').value, 'O', false);
-    document.getElementById('info').innerText = player1.playerName + '`s move';
-    setTile();
-  };
 
   const setTile = () => {
     c0 = document.getElementById('cell0');
@@ -84,6 +77,14 @@ const gameLogic = () => {
     c6 = document.getElementById('cell6');
     c7 = document.getElementById('cell7');
     c8 = document.getElementById('cell8');
+  };
+
+  const init = () => {
+    newGameBoard.init();
+    player1 = newPlayer(document.getElementById('player01Name').value, 'X', true);
+    player2 = newPlayer(document.getElementById('player02Name').value, 'O', false);
+    document.getElementById('info').innerText = player1.playerName + '`s move';
+    setTile();
   };
 
   const turnEnd = () => {
