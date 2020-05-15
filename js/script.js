@@ -21,7 +21,7 @@ const gameBoard = () => {
     document.getElementById('cell8').innerHTML = '';
     document.getElementById('winner-text').innerHTML = '';
   }
-
+    
   const setCell = (index, symbol) => {
     board[index] = symbol;
   }
@@ -49,7 +49,12 @@ const gameBoard = () => {
     return isDraw;
   }
 
-  return { init, setCell, checkWinCondition, checkDrawCondition}
+  const blockCells = () => {
+    const cells = document.querySelectorAll(".cell");
+    [...cells].forEach(cell => cell.style.pointerEvents = "none");
+  }
+
+  return { init, setCell, checkWinCondition, checkDrawCondition, blockCells}
 }
 
 const gameLogic = () => {
@@ -116,10 +121,11 @@ const gameLogic = () => {
     let thisWin = newGameBoard.checkWinCondition();
     let thisDraw = newGameBoard.checkDrawCondition();
     if (thisWin) {
-      newGameBoard.init();
+      newGameBoard.blockCells();
       document.getElementById('winner-text').innerText = 'Winner!';
     }
     if (thisDraw){
+      newGameBoard.blockCells();
       document.getElementById('info').innerText = 'game over';
       document.getElementById('winner-text').innerText = 'Draw!';
     }
