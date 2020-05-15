@@ -21,21 +21,21 @@ const gameBoard = () => {
     document.getElementById('cell8').innerHTML = '';
     document.getElementById('winner-text').innerHTML = '';
   };
-    
+
   const setCell = (index, symbol) => {
     board[index] = symbol;
   };
 
   const checkWinCondition = () => {
     let isWin = false;
-      if (board[0] != null && board[0] == board[1] && board[1] == board[2]) isWin = true;
-      if (board[3] != null && board[3] == board[4] && board[4] == board[5]) isWin = true;
-      if (board[6] != null && board[6] == board[7] && board[7] == board[8]) isWin = true;
-      if (board[0] != null && board[0] == board[3] && board[3] == board[6]) isWin = true;
-      if (board[1] != null && board[1] == board[4] && board[4] == board[7]) isWin = true;
-      if (board[2] != null && board[2] == board[5] && board[5] == board[8]) isWin = true;
-      if (board[0] != null && board[0] == board[4] && board[4] == board[8]) isWin = true;
-      if (board[6] != null && board[6] == board[4] && board[4] == board[2]) isWin = true;
+    if (board[0] != null && board[0] === board[1] && board[1] === board[2]) isWin = true;
+    if (board[3] != null && board[3] === board[4] && board[4] === board[5]) isWin = true;
+    if (board[6] != null && board[6] === board[7] && board[7] === board[8]) isWin = true;
+    if (board[0] != null && board[0] === board[3] && board[3] === board[6]) isWin = true;
+    if (board[1] != null && board[1] === board[4] && board[4] === board[7]) isWin = true;
+    if (board[2] != null && board[2] === board[5] && board[5] === board[8]) isWin = true;
+    if (board[0] != null && board[0] === board[4] && board[4] === board[8]) isWin = true;
+    if (board[6] != null && board[6] === board[4] && board[4] === board[2]) isWin = true;
     
     return isWin;
   };
