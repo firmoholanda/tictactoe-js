@@ -8,15 +8,16 @@ tictactoe-js
 
 - bootstrap
 - jquery
+- javascript
 - git
 
-bootstrap, jquery, webpacker and git was used on this project.
+bootstrap, jquery, javascript and git was used on this project.
 
 
 
 ## 🚀 the project
 
-this project can be found in https://github.com/firmoholanda/firmoholanda.github.io
+this project can be found in https://github.com/firmoholanda/tictactoe-js
 
 
 ### ✨ [live version](https://firmoholanda.github.io)
@@ -24,34 +25,6 @@ this project can be found in https://github.com/firmoholanda/firmoholanda.github
 <a href="https://firmoholanda.github.io/" target="_blank">
     <img alt="app image" src="https://github.com/firmoholanda/tictactoe-js/blob/release/img/app-screenshot.png"/>
 </a>
-
-
-
-## 🔨 instructions
-
-To get started with the app, clone the repo and then install the needed gems:
-
-```
-$ bundle install --without production
-```
-
-Next, migrate the database:
-
-```
-$ rails db:migrate
-```
-
-Finally, run the test suite to verify that everything is working correctly:
-
-```
-$ rails test
-```
-
-If the test suite passes, you'll be ready to run the app in a local server:
-
-```
-$ rails server
-```
 
 
 
@@ -84,4 +57,4 @@ give a ⭐️ if you like this project!
 
 ## 📝 license
 
-this project is [MIT](https://github.com/firmoholanda/stay-in-touch/development/license.txt) licensed.
+this project is [MIT](https://github.com/firmoholanda/tictactoe-js/development/license.txt) licensed.
