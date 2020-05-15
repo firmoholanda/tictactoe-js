@@ -36,7 +36,7 @@ const gameBoard = () => {
     if (board[2] != null && board[2] === board[5] && board[5] === board[8]) isWin = true;
     if (board[0] != null && board[0] === board[4] && board[4] === board[8]) isWin = true;
     if (board[6] != null && board[6] === board[4] && board[4] === board[2]) isWin = true;
-    
+
     return isWin;
   };
 
@@ -48,20 +48,26 @@ const gameBoard = () => {
   };
 
   const blockCells = () => {
-    const cells = document.querySelectorAll(".cell");
-    [...cells].forEach(cell => cell.style.pointerEvents = "none");
+    const cells = document.querySelectorAll('.cell');
+    [...cells].forEach(cell => cell.style.pointerEvents = 'none');
   };
 
-  return { init, setCell, checkWinCondition, checkDrawCondition, blockCells}
+  return { 
+    init, 
+    setCell, 
+    checkWinCondition, 
+    checkDrawCondition, 
+    blockCells
+  };
 };
 
 const gameLogic = () => {
   let player1;
   let player2;
-  let newGameBoard = gameBoard();
+  const newGameBoard = gameBoard();
 
   const init = () => {
-    newGameBoard.init(); //sets baord to null
+    newGameBoard.init();
     player1 = newPlayer(document.getElementById('player01Name').value, 'X', true);
     player2 = newPlayer(document.getElementById('player02Name').value, 'O', false);
     document.getElementById('info').innerText = player1.playerName + '`s move';
@@ -97,7 +103,7 @@ const gameLogic = () => {
         newGameBoard.setCell(index, cell.innerHTML);
         turnEnd();
         checkResult();
-        cell.style.pointerEvents = "none";
+        cell.style.pointerEvents = 'none';
       });
     };
 
