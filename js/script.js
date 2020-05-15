@@ -1,15 +1,15 @@
 const newPlayer = (name, symbol, turn) => {
   const playerName = name;
   const token = symbol;
-  let playerTurn = turn
-  return {playerName, token, playerTurn}
-}
+  const playerTurn = turn;
+  return { playerName, token, playerTurn };
+};
 
 const gameBoard = () => {
   let board;
 
   const init = () => {
-    board = [null,null,null,null,null,null,null,null,null];
+    board = [null, null, null, null, null, null, null, null, null];
     document.getElementById('cell0').innerHTML = '';
     document.getElementById('cell1').innerHTML = '';
     document.getElementById('cell2').innerHTML = '';
@@ -20,11 +20,11 @@ const gameBoard = () => {
     document.getElementById('cell7').innerHTML = '';
     document.getElementById('cell8').innerHTML = '';
     document.getElementById('winner-text').innerHTML = '';
-  }
+  };
     
   const setCell = (index, symbol) => {
     board[index] = symbol;
-  }
+  };
 
   const checkWinCondition = () => {
     let isWin = false;
@@ -38,22 +38,22 @@ const gameBoard = () => {
       if (board[6] != null && board[6] == board[4] && board[4] == board[2]) isWin = true;
     
     return isWin;
-  }
+  };
 
   const checkDrawCondition = () => {
     let isDraw = true;
     if (board.includes(null)) isDraw = false;
 
     return isDraw;
-  }
+  };
 
   const blockCells = () => {
     const cells = document.querySelectorAll(".cell");
     [...cells].forEach(cell => cell.style.pointerEvents = "none");
-  }
+  };
 
   return { init, setCell, checkWinCondition, checkDrawCondition, blockCells}
-}
+};
 
 const gameLogic = () => {
   let player1;
@@ -66,7 +66,7 @@ const gameLogic = () => {
     player2 = newPlayer(document.getElementById('player02Name').value, 'O', false);
     document.getElementById('info').innerText = player1.playerName + '`s move';
     setTile();
-  }
+  };
 
   const setTile = () => {
     c0 = document.getElementById('cell0');
@@ -78,7 +78,7 @@ const gameLogic = () => {
     c6 = document.getElementById('cell6');
     c7 = document.getElementById('cell7');
     c8 = document.getElementById('cell8');
-  }
+  };
 
   const turnEnd = () => {
     [player1.playerTurn, player2.playerTurn] = [player2.playerTurn, player1.playerTurn];
@@ -88,7 +88,7 @@ const gameLogic = () => {
     } else {
       document.getElementById('info').innerText = player2.playerName + '`s move';
     }
-  }
+  };
 
   const moveTile = () => {
     function addTableCellEventListener(cell, index) {
@@ -99,7 +99,7 @@ const gameLogic = () => {
         checkResult();
         cell.style.pointerEvents = "none";
       });
-    }
+    };
 
     addTableCellEventListener(c0, 0);
     addTableCellEventListener(c1, 1);
@@ -111,7 +111,7 @@ const gameLogic = () => {
     addTableCellEventListener(c7, 7);
     addTableCellEventListener(c8, 8);
 
-  }
+  };
 
   const checkResult = () => {
     let thisWin = newGameBoard.checkWinCondition();
@@ -126,16 +126,16 @@ const gameLogic = () => {
       document.getElementById('winner-text').innerText = 'Draw!';
     }
     return status;
-  }
+  };
 
   return {init, turnEnd, moveTile, checkResult}
-}
+};
 
 const startGame = () => {
   let newGameLogic = gameLogic();
       newGameLogic.init();
       newGameLogic.moveTile();
-}
+};
 
 document.getElementById('gameStart').addEventListener('click', () => {
   startGame();
