@@ -30,9 +30,9 @@ this project can be found in https://github.com/firmoholanda/tictactoe-js
 
 ## 🤝 contributing
 
-contributions, issues, and feature requests are welcome!<br/>feel free to check [issues page](hhttps://github.com/firmoholanda/stay-in-touch/development/issues).
+contributions, issues, and feature requests are welcome!<br/>feel free to check [issues page](hhttps://github.com/firmoholanda/tictactoe-js/development/issues).
 
-1. fork it (https://github.com/firmoholanda/stay-in-touch/development/fork)
+1. fork it (https://github.com/firmoholanda/tictactoe-js/development/fork)
 2. create your working branch (git checkout -b [choose-a-name])
 3. commit your changes (git commit -am 'what this commit will fix/add/improve')
 4. push to the branch (git push origin [chosen-name])
