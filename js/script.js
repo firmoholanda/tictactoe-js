@@ -50,7 +50,7 @@ const gameBoard = () => {
   function blockCells() {
     const cells = document.querySelectorAll('.cell');
     [...cells].forEach(cell => cell.style.pointerEvents = 'none');
-  };
+  }
 
   return {
     init,
@@ -89,12 +89,27 @@ const gameLogic = () => {
 
   const turnEnd = () => {
     [player1.playerTurn, player2.playerTurn] = [player2.playerTurn, player1.playerTurn];
-    
+
     if (player1.playerTurn) {
       document.getElementById('info').innerText = player1.playerName + '`s move';
     } else {
       document.getElementById('info').innerText = player2.playerName + '`s move';
     }
+  };
+
+  const checkResult = () => {
+    let thisWin = newGameBoard.checkWinCondition();
+    let thisDraw = newGameBoard.checkDrawCondition();
+    if (thisWin) {
+      newGameBoard.blockCells();
+      document.getElementById('winner-text').innerText = 'Winner!';
+    }
+    if (thisDraw) {
+      newGameBoard.blockCells();
+      document.getElementById('info').innerText = 'game over';
+      document.getElementById('winner-text').innerText = 'Draw!';
+    }
+    return status;
   };
 
   const moveTile = () => {
@@ -106,7 +121,7 @@ const gameLogic = () => {
         checkResult();
         cell.style.pointerEvents = 'none';
       });
-    };
+    }
 
     addTableCellEventListener(c0, 0);
     addTableCellEventListener(c1, 1);
@@ -118,21 +133,6 @@ const gameLogic = () => {
     addTableCellEventListener(c7, 7);
     addTableCellEventListener(c8, 8);
 
-  };
-
-  const checkResult = () => {
-    let thisWin = newGameBoard.checkWinCondition();
-    let thisDraw = newGameBoard.checkDrawCondition();
-    if (thisWin) {
-      newGameBoard.blockCells();
-      document.getElementById('winner-text').innerText = 'Winner!';
-    }
-    if (thisDraw){
-      newGameBoard.blockCells();
-      document.getElementById('info').innerText = 'game over';
-      document.getElementById('winner-text').innerText = 'Draw!';
-    }
-    return status;
   };
 
   return {init, turnEnd, moveTile, checkResult}
