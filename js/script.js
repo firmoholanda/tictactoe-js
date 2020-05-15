@@ -83,7 +83,7 @@ const gameLogic = () => {
     newGameBoard.init();
     player1 = newPlayer(document.getElementById('player01Name').value, 'X', true);
     player2 = newPlayer(document.getElementById('player02Name').value, 'O', false);
-    document.getElementById('info').innerText = player1.playerName + '`s move';
+    document.getElementById('info').innerText = `${player1.playerName} 's move`;
     setTile();
   };
 
@@ -91,9 +91,9 @@ const gameLogic = () => {
     [player1.playerTurn, player2.playerTurn] = [player2.playerTurn, player1.playerTurn];
 
     if (player1.playerTurn) {
-      document.getElementById('info').innerText = player1.playerName + '`s move';
+      document.getElementById('info').innerText = `${player1.playerName} 's move`;
     } else {
-      document.getElementById('info').innerText = player2.playerName + '`s move';
+      document.getElementById('info').innerText = `${player2.playerName} 's move`;
     }
   };
 
@@ -109,7 +109,6 @@ const gameLogic = () => {
       document.getElementById('info').innerText = 'game over';
       document.getElementById('winner-text').innerText = 'Draw!';
     }
-    return status;
   };
 
   const moveTile = () => {
@@ -139,7 +138,7 @@ const gameLogic = () => {
     turnEnd,
     moveTile,
     checkResult,
-  }
+  };
 };
 
 const startGame = () => {
