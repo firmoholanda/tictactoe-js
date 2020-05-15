@@ -49,7 +49,7 @@ const gameBoard = () => {
 
   function blockCells() {
     const cells = document.querySelectorAll('.cell');
-    [...cells].forEach((cell) => (cell.style.pointerEvents = 'none'));
+    [...cells].forEach(cell => {cell.style.pointerEvents = 'none'});
   }
 
   return {
