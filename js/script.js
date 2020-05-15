@@ -98,8 +98,8 @@ const gameLogic = () => {
   };
 
   const checkResult = () => {
-    let thisWin = newGameBoard.checkWinCondition();
-    let thisDraw = newGameBoard.checkDrawCondition();
+    const thisWin = newGameBoard.checkWinCondition();
+    const thisDraw = newGameBoard.checkDrawCondition();
     if (thisWin) {
       newGameBoard.blockCells();
       document.getElementById('winner-text').innerText = 'Winner!';
@@ -132,16 +132,20 @@ const gameLogic = () => {
     addTableCellEventListener(c6, 6);
     addTableCellEventListener(c7, 7);
     addTableCellEventListener(c8, 8);
-
   };
 
-  return {init, turnEnd, moveTile, checkResult}
+  return {
+    init,
+    turnEnd,
+    moveTile,
+    checkResult
+  }
 };
 
 const startGame = () => {
-  let newGameLogic = gameLogic();
-      newGameLogic.init();
-      newGameLogic.moveTile();
+  const newGameLogic = gameLogic();
+  newGameLogic.init();
+  newGameLogic.moveTile();
 };
 
 document.getElementById('gameStart').addEventListener('click', () => {
