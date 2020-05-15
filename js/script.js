@@ -64,7 +64,16 @@ const gameBoard = () => {
 const gameLogic = () => {
   let player1;
   let player2;
-  let c0, c1, c2, c3, c4, c5, c6, c7, c8;
+  let c0;
+  let c1;
+  let c2;
+  let c3;
+  let c4;
+  let c5;
+  let c6;
+  let c7;
+  let c8;
+  
   const newGameBoard = gameBoard();
 
   const setTile = () => {
