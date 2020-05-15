@@ -123,7 +123,11 @@ const gameLogic = () => {
   const moveTile = () => {
     function addTableCellEventListener(cell, index) {
       cell.addEventListener('click', () => {
-        player1.playerTurn ? cell.innerHTML = 'X' : cell.innerHTML = 'O';
+        if (player1.playerTurn) {
+          cell.innerHTML = 'X';
+        } else {
+          cell.innerHTML = 'O';
+        }
         newGameBoard.setCell(index, cell.innerHTML);
         turnEnd();
         checkResult();
