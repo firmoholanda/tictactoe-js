@@ -57,7 +57,7 @@ const gameBoard = () => {
     setCell,
     checkWinCondition,
     checkDrawCondition,
-    blockCells
+    blockCells,
   };
 };
 
@@ -138,7 +138,7 @@ const gameLogic = () => {
     init,
     turnEnd,
     moveTile,
-    checkResult
+    checkResult,
   }
 };
 
