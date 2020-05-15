@@ -6,7 +6,7 @@ const newPlayer = (name, symbol, turn) => {
 }
 
 const gameBoard = () => {
-  let board; //document.getElementByClassName('game-board')
+  let board;
 
   const init = () => {
     board = [null,null,null,null,null,null,null,null,null];
@@ -28,7 +28,6 @@ const gameBoard = () => {
 
   const checkWinCondition = () => {
     let isWin = false;
-      // const winningCombinations = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[6,4,2]];
       if (board[0] != null && board[0] == board[1] && board[1] == board[2]) isWin = true;
       if (board[3] != null && board[3] == board[4] && board[4] == board[5]) isWin = true;
       if (board[6] != null && board[6] == board[7] && board[7] == board[8]) isWin = true;
@@ -37,14 +36,13 @@ const gameBoard = () => {
       if (board[2] != null && board[2] == board[5] && board[5] == board[8]) isWin = true;
       if (board[0] != null && board[0] == board[4] && board[4] == board[8]) isWin = true;
       if (board[6] != null && board[6] == board[4] && board[4] == board[2]) isWin = true;
-      (isWin) ? console.log("iswin true") : console.log("iswin false");
+    
     return isWin;
   }
 
   const checkDrawCondition = () => {
     let isDraw = true;
     if (board.includes(null)) isDraw = false;
-    (isDraw) ? console.log("isdraw true") : console.log("isdrawFalse");
 
     return isDraw;
   }
@@ -90,8 +88,6 @@ const gameLogic = () => {
     } else {
       document.getElementById('info').innerText = player2.playerName + '`s move';
     }
-    //console.log('player1 ' + player1.playerTurn);
-    //console.log('player2 ' + player2.playerTurn);
   }
 
   const moveTile = () => {
