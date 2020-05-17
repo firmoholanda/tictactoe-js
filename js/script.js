@@ -10,7 +10,6 @@ const gameBoard = () => {
 
   const init = () => {
     board = [null,null,null,null,null,null,null,null,null];
-    c = [];
     for (var i = 0; i < 9; i++) {
       document.getElementById('cell'+i).innerHTML = '';
     }
@@ -32,7 +31,6 @@ const gameBoard = () => {
     if (board[2] != null && board[2] === board[5] && board[5] === board[8]) isWin = true;
     if (board[0] != null && board[0] === board[4] && board[4] === board[8]) isWin = true;
     if (board[6] != null && board[6] === board[4] && board[4] === board[2]) isWin = true;
-
     return isWin;
   };
 
@@ -60,28 +58,13 @@ const gameBoard = () => {
 const gameLogic = () => {
   let player1;
   let player2;
-  let c0;
-  let c1;
-  let c2;
-  let c3;
-  let c4;
-  let c5;
-  let c6;
-  let c7;
-  let c8;
-
+  let tileset = [];
   const newGameBoard = gameBoard();
 
   const setTile = () => {
-    c0 = document.getElementById('cell0');
-    c1 = document.getElementById('cell1');
-    c2 = document.getElementById('cell2');
-    c3 = document.getElementById('cell3');
-    c4 = document.getElementById('cell4');
-    c5 = document.getElementById('cell5');
-    c6 = document.getElementById('cell6');
-    c7 = document.getElementById('cell7');
-    c8 = document.getElementById('cell8');
+    for (var i = 0; i < 9; i++) {
+      tileset[i] = document.getElementById('cell'+i);
+    }
   };
 
   const init = () => {
@@ -107,6 +90,7 @@ const gameLogic = () => {
     const thisDraw = newGameBoard.checkDrawCondition();
     if (thisWin) {
       newGameBoard.blockCells();
+      document.getElementById('info').innerText = 'Congratulations!'
       document.getElementById('winner-text').innerText = 'Winner!';
     }
     if (thisDraw) {
@@ -131,15 +115,9 @@ const gameLogic = () => {
       });
     }
 
-    addTableCellEventListener(c0, 0);
-    addTableCellEventListener(c1, 1);
-    addTableCellEventListener(c2, 2);
-    addTableCellEventListener(c3, 3);
-    addTableCellEventListener(c4, 4);
-    addTableCellEventListener(c5, 5);
-    addTableCellEventListener(c6, 6);
-    addTableCellEventListener(c7, 7);
-    addTableCellEventListener(c8, 8);
+    for (var i = 0; i < 9; i++) {
+      addTableCellEventListener(tileset[i], i);
+    };
   };
 
   return {
