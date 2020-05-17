@@ -9,16 +9,12 @@ const gameBoard = () => {
   let board;
 
   const init = () => {
-    board = [null, null, null, null, null, null, null, null, null];
-    document.getElementById('cell0').innerHTML = '';
-    document.getElementById('cell1').innerHTML = '';
-    document.getElementById('cell2').innerHTML = '';
-    document.getElementById('cell3').innerHTML = '';
-    document.getElementById('cell4').innerHTML = '';
-    document.getElementById('cell5').innerHTML = '';
-    document.getElementById('cell6').innerHTML = '';
-    document.getElementById('cell7').innerHTML = '';
-    document.getElementById('cell8').innerHTML = '';
+    board = [null,null,null,null,null,null,null,null,null];
+    c = [];
+    for (var i = 0; i < 9; i++) {
+      document.getElementById('cell'+i).innerHTML = '';
+    }
+
     document.getElementById('winner-text').innerHTML = '';
   };
 
