@@ -21,7 +21,7 @@ const gameBoard = () => {
   const init = () => {
     board = [null, null, null, null, null, null, null, null, null];
     for (let i = 0; i < 9; i += 1) {
-      document.getElementById('cell' + i).innerHTML = '';
+      document.getElementById('cell' + i).innerHTML = ''; // eslint-disable-line prefer-template
     }
     document.getElementById('winner-text').innerHTML = '';
     unblockCells();
@@ -56,8 +56,7 @@ const gameBoard = () => {
     checkWinCondition,
     checkDrawCondition,
     blockCells,
-    UnblockCells,
-    getBoard,
+    unblockCells,
   };
 };
 
@@ -69,7 +68,7 @@ const gameLogic = () => {
 
   const setTile = () => {
     for (let i = 0; i < 9; i += 1) {
-      tileset[i] = document.getElementById('cell'+i);
+      tileset[i] = document.getElementById('cell' + i); // eslint-disable-line prefer-template
     }
   };
 
@@ -96,7 +95,7 @@ const gameLogic = () => {
     const thisDraw = newGameBoard.checkDrawCondition();
     if (thisWin) {
       newGameBoard.blockCells();
-      document.getElementById('info').innerText = 'Congratulations!'
+      document.getElementById('info').innerText = 'Congratulations!';
       document.getElementById('winner-text').innerText = 'Winner!';
     }
     if (thisDraw) {
@@ -123,7 +122,7 @@ const gameLogic = () => {
 
     for (let i = 0; i < 9; i += 1) {
       addTableCellEventListener(tileset[i], i);
-    };
+    }
   };
 
   return {
