@@ -20,6 +20,7 @@ const gameBoard = () => {
       document.getElementById('cell'+i).innerHTML = '';
     };
     document.getElementById('winner-text').innerHTML = '';
+    UnblockCells();
   };
 
   const setCell = (index, symbol) => {
@@ -50,13 +51,19 @@ const gameBoard = () => {
     [...cells].forEach(cell => { cell.style.pointerEvents = 'none'; });
   }
 
+  const UnblockCells = () => {
+    const cells = document.querySelectorAll('.cell');
+    [...cells].forEach(cell => { cell.style.pointerEvents = 'auto'; });
+  }
+
   return {
     init,
     setCell,
     checkWinCondition,
     checkDrawCondition,
     blockCells,
-    getBoard
+    UnblockCells,
+    getBoard,
   };
 };
 
