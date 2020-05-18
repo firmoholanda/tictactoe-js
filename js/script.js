@@ -8,6 +8,10 @@ const newPlayer = (name, symbol, turn) => {
 const gameBoard = () => {
   let board;
 
+  const getBoard = () => {
+    return board;
+  }
+
   const init = () => {
     console.log('gameinit');
     board = [null,null,null,null,null,null,null,null,null];
@@ -52,6 +56,7 @@ const gameBoard = () => {
     checkWinCondition,
     checkDrawCondition,
     blockCells,
+    getBoard
   };
 };
 
@@ -93,13 +98,13 @@ const gameLogic = () => {
     const thisDraw = newGameBoard.checkDrawCondition();
     if (thisWin) {
       newGameBoard.blockCells();
-      console.log(newGameBoard}.board);
+      console.log('board: ' + newGameBoard.getBoard());
       document.getElementById('info').innerText = 'Congratulations!'
       document.getElementById('winner-text').innerText = 'Winner!';
     }
     if (thisDraw) {
       newGameBoard.blockCells();
-      console.log(newGameBoard.board);
+      console.log('board: ' + newGameBoard.getBoard());
       document.getElementById('info').innerText = 'game over';
       document.getElementById('winner-text').innerText = 'Draw!';
     }
