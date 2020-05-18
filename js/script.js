@@ -159,4 +159,5 @@ document.getElementById('gameStart').addEventListener('click', () => {
 
 document.getElementById('btnReset').addEventListener('click', () => {
   startGame();
+  startGame();
 });
