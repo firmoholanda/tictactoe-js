@@ -139,9 +139,9 @@ const gameLogic = () => {
 const newGameLogic = gameLogic();
 
 const startGame = () => {
-  document.getElementById("btnNewGame").style.display = "none";
   newGameLogic.init();
   newGameLogic.moveTile();
+  document.getElementById("btnNewGame").style.display = "none";
 };
 
 document.getElementById('gameStart').addEventListener('click', () => {
@@ -149,11 +149,9 @@ document.getElementById('gameStart').addEventListener('click', () => {
 });
 
 document.getElementById('btnReset').addEventListener('click', () => {
-
   const newGameBoard = [];
   const newGameLogic = [];
   
   location.reload();
-
 });
 
