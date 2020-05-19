@@ -153,11 +153,6 @@ document.getElementById('btnReset').addEventListener('click', () => {
   const newGameLogic = [];
   
   location.reload();
-   
-
-  document.addEventListener("DOMContentLoaded", function (event) {
-    startGame();
-  });
 
 });
 
