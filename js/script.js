@@ -97,11 +97,13 @@ const gameLogic = () => {
       newGameBoard.blockCells();
       document.getElementById('info').innerText = 'Congratulations!';
       document.getElementById('winner-text').innerText = 'Winner!';
+      document.getElementById("btnReset").style.display = "block";
     }
     if (thisDraw) {
       newGameBoard.blockCells();
       document.getElementById('info').innerText = 'game over';
       document.getElementById('winner-text').innerText = 'Draw!';
+      document.getElementById("btnReset").style.display = "block";
     }
   };
 
@@ -146,6 +148,11 @@ document.getElementById('gameStart').addEventListener('click', () => {
 });
 
 document.getElementById('btnReset').addEventListener('click', () => {
+
+  const newGameBoard = [];
+  const newGameLogic = [];
+  
   location.reload();
-  startGame();
+
 });
+
