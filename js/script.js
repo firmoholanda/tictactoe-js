@@ -139,6 +139,7 @@ const gameLogic = () => {
 const newGameLogic = gameLogic();
 
 const startGame = () => {
+  document.getElementById("btnNewGame").style.display = "none";
   newGameLogic.init();
   newGameLogic.moveTile();
 };
