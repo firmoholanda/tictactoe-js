@@ -97,13 +97,13 @@ const gameLogic = () => {
       newGameBoard.blockCells();
       document.getElementById('info').innerText = 'Congratulations!';
       document.getElementById('winner-text').innerText = 'Winner!';
-      document.getElementById("btnReset").style.display = 'inline';
+      document.getElementById('btnReset').style.display = 'inline';
     }
     if (thisDraw) {
       newGameBoard.blockCells();
       document.getElementById('info').innerText = 'game over';
       document.getElementById('winner-text').innerText = 'Draw!';
-      document.getElementById("btnReset").style.display = 'inline';
+      document.getElementById('btnReset').style.display = 'inline';
     }
   };
 
@@ -141,7 +141,7 @@ const newGameLogic = gameLogic();
 const startGame = () => {
   newGameLogic.init();
   newGameLogic.moveTile();
-  document.getElementById("btnNewGame").style.display = 'none';
+  document.getElementById('btnNewGame').style.display = 'none';
 };
 
 document.getElementById('gameStart').addEventListener('click', () => {
