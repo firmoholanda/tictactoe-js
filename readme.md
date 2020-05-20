@@ -8,59 +8,31 @@ tictactoe-js
 
 - bootstrap
 - jquery
-- webpacker
+- javascript
 - git
 
-bootstrap, jquery, webpacker and git was used on this project.
+bootstrap, jquery, javascript and git was used on this project.
 
 
 
 ## 🚀 the project
 
-this project can be found in https://github.com/firmoholanda/firmoholanda.github.io
+this project can be found in https://github.com/firmoholanda/tictactoe-js
 
 
-### ✨ [live version](https://firmoholanda.github.io)
+### ✨ [live version]()
 
-<a href="https://firmoholanda.github.io/" target="_blank">
-    <img alt="app image" src=""/>
+<a href="/" target="_blank">
+    <img alt="app image" src="https://github.com/firmoholanda/tictactoe-js/blob/release/img/app-screenshot.png"/>
 </a>
-
-
-
-## 🔨 instructions
-
-To get started with the app, clone the repo and then install the needed gems:
-
-```
-$ bundle install --without production
-```
-
-Next, migrate the database:
-
-```
-$ rails db:migrate
-```
-
-Finally, run the test suite to verify that everything is working correctly:
-
-```
-$ rails test
-```
-
-If the test suite passes, you'll be ready to run the app in a local server:
-
-```
-$ rails server
-```
 
 
 
 ## 🤝 contributing
 
-contributions, issues, and feature requests are welcome!<br/>feel free to check [issues page](hhttps://github.com/firmoholanda/stay-in-touch/development/issues).
+contributions, issues, and feature requests are welcome!<br/>feel free to check [issues page](hhttps://github.com/firmoholanda/tictactoe-js/development/issues).
 
-1. fork it (https://github.com/firmoholanda/stay-in-touch/development/fork)
+1. fork it (https://github.com/firmoholanda/tictactoe-js/development/fork)
 2. create your working branch (git checkout -b [choose-a-name])
 3. commit your changes (git commit -am 'what this commit will fix/add/improve')
 4. push to the branch (git push origin [chosen-name])
@@ -71,7 +43,9 @@ contributions, issues, and feature requests are welcome!<br/>feel free to check 
 ## 🤖 contributor
 
 
-firmo holanda - [GitHub](https://github.com/firmoholanda)
+firmo holanda - [github](https://github.com/firmoholanda)
+
+eduardo bonilla - [github](https://github.com/Usagib)
 
 
 
@@ -83,4 +57,4 @@ give a ⭐️ if you like this project!
 
 ## 📝 license
 
-this project is [MIT](https://github.com/firmoholanda/stay-in-touch/development/license.txt) licensed.
+this project is [MIT](https://github.com/firmoholanda/tictactoe-js/development/license.txt) licensed.
