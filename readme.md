@@ -20,7 +20,7 @@ bootstrap, jquery, javascript and git was used on this project.
 this project can be found in https://github.com/firmoholanda/tictactoe-js
 
 
-### ✨ [live version]()
+### ✨ [live version](https://raw.githack.com/firmoholanda/tictactoe-js/release/index.html)
 
 <a href="/" target="_blank">
     <img alt="app image" src="https://github.com/firmoholanda/tictactoe-js/blob/release/img/app-screenshot.png"/>
