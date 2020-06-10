@@ -1,9 +1,7 @@
-const newPlayer = (name, symbol, turn) => {
-  const playerName = name;
-  const token = symbol;
-  const playerTurn = turn;
-  return { playerName, token, playerTurn };
-};
+// import game logic
+import game from './logic/logic';
+
+console.log(game)
 
 const gameBoard = () => {
   let board;
@@ -19,7 +17,6 @@ const gameBoard = () => {
   };
 
   const init = () => {
-    board = [null, null, null, null, null, null, null, null, null];
     for (let i = 0; i < 9; i += 1) {
       document.getElementById('cell' + i).innerHTML = ''; // eslint-disable-line prefer-template
     }
@@ -31,30 +28,9 @@ const gameBoard = () => {
     board[index] = symbol;
   };
 
-  const checkWinCondition = () => {
-    let isWin = false;
-    if (board[0] != null && board[0] === board[1] && board[1] === board[2]) isWin = true;
-    if (board[3] != null && board[3] === board[4] && board[4] === board[5]) isWin = true;
-    if (board[6] != null && board[6] === board[7] && board[7] === board[8]) isWin = true;
-    if (board[0] != null && board[0] === board[3] && board[3] === board[6]) isWin = true;
-    if (board[1] != null && board[1] === board[4] && board[4] === board[7]) isWin = true;
-    if (board[2] != null && board[2] === board[5] && board[5] === board[8]) isWin = true;
-    if (board[0] != null && board[0] === board[4] && board[4] === board[8]) isWin = true;
-    if (board[6] != null && board[6] === board[4] && board[4] === board[2]) isWin = true;
-    return isWin;
-  };
-
-  const checkDrawCondition = () => {
-    let isDraw = true;
-    if (board.includes(null)) isDraw = false;
-    return isDraw;
-  };
-
   return {
     init,
     setCell,
-    checkWinCondition,
-    checkDrawCondition,
     blockCells,
     unblockCells,
   };
@@ -74,8 +50,8 @@ const gameLogic = () => {
 
   const init = () => {
     newGameBoard.init();
-    player1 = newPlayer(document.getElementById('player01Name').value, 'X', true);
-    player2 = newPlayer(document.getElementById('player02Name').value, 'O', false);
+    player1 = game.newPlayer(document.getElementById('player01Name').value, 'X', true);
+    player2 = game.newPlayer(document.getElementById('player02Name').value, 'O', false);
     document.getElementById('info').innerText = `${player1.playerName} 's move`;
     setTile();
   };

@@ -17,8 +17,8 @@ const game = () => {
     }
   };
 
-  const player1 = newPlayer('tom', 'X', true);
-  const player2 = newPlayer('robert', 'O', false);
+  //const player1 = newPlayer('tom', 'X', true);
+  //const player2 = newPlayer('robert', 'O', false);
   const board = newBoard();
 
   const moveTile = (index, board, player) => {
