@@ -18,3 +18,8 @@ test('player 1 should win', () => {
   newGame.moveTile(6, newGame.board, newGame.player1);
   expect(newGame.checkWinCondition(newGame.board)).toEqual(true);
 });
+
+test('player turn should change', () => {
+  expect(newGame.player1.playerTurn).toBe(true);
+  expect(newGame.player2.playerTurn).toBe(false);
+});

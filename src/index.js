@@ -1,10 +1,28 @@
 // import game logic
 import game from './logic/logic';
 
-console.log(game)
+console.log(game);
+
+const newPlayer = (name, symbol, turn) => {
+  const playerName = name;
+  const token = symbol;
+  const playerTurn = turn;
+  return {
+    playerName,
+    token,
+    playerTurn
+  };
+};
+
+const newBoard = () => {
+  const tiles = [null, null, null, null, null, null, null, null, null];
+  return {
+    tiles
+  }
+};
 
 const gameBoard = () => {
-  let board;
+  let board = newBoard();
 
   const blockCells = () => {
     const cells = document.querySelectorAll('.cell');
@@ -33,6 +51,7 @@ const gameBoard = () => {
     setCell,
     blockCells,
     unblockCells,
+    board
   };
 };
 
@@ -41,6 +60,7 @@ const gameLogic = () => {
   let player2;
   const tileset = [];
   const newGameBoard = gameBoard();
+  console.log(newGameBoard.board);
 
   const setTile = () => {
     for (let i = 0; i < 9; i += 1) {
@@ -50,10 +70,31 @@ const gameLogic = () => {
 
   const init = () => {
     newGameBoard.init();
-    player1 = game.newPlayer(document.getElementById('player01Name').value, 'X', true);
-    player2 = game.newPlayer(document.getElementById('player02Name').value, 'O', false);
+    player1 = newPlayer(document.getElementById('player01Name').value, 'X', true);
+    player2 = newPlayer(document.getElementById('player02Name').value, 'O', false);
     document.getElementById('info').innerText = `${player1.playerName} 's move`;
     setTile();
+  };
+
+  const checkWinCondition = board => {
+    let isWin = false;
+    if (board.tiles[0] != null && board.tiles[0] === board.tiles[1] && board.tiles[1] === board.tiles[2]) isWin = true;
+    if (board.tiles[3] != null && board.tiles[3] === board.tiles[4] && board.tiles[4] === board.tiles[5]) isWin = true;
+    if (board.tiles[6] != null && board.tiles[6] === board.tiles[7] && board.tiles[7] === board.tiles[8]) isWin = true;
+    if (board.tiles[0] != null && board.tiles[0] === board.tiles[3] && board.tiles[3] === board.tiles[6]) isWin = true;
+    if (board.tiles[1] != null && board.tiles[1] === board.tiles[4] && board.tiles[4] === board.tiles[7]) isWin = true;
+    if (board.tiles[2] != null && board.tiles[2] === board.tiles[5] && board.tiles[5] === board.tiles[8]) isWin = true;
+    if (board.tiles[0] != null && board.tiles[0] === board.tiles[4] && board.tiles[4] === board.tiles[8]) isWin = true;
+    if (board.tiles[6] != null && board.tiles[6] === board.tiles[4] && board.tiles[4] === board.tiles[2]) isWin = true;
+    return isWin;
+  };
+
+  const checkDrawCondition = board => {
+    let isDraw = true;
+    if (board.tiles.includes(null)) {
+      isDraw = false;
+    }
+    return isDraw;
   };
 
   const turnEnd = () => {
@@ -67,8 +108,10 @@ const gameLogic = () => {
   };
 
   const checkResult = () => {
-    const thisWin = newGameBoard.checkWinCondition();
-    const thisDraw = newGameBoard.checkDrawCondition();
+    const thisWin = checkWinCondition(newGameBoard.board);
+    console.log(checkWinCondition(newGameBoard.board));
+    console.log(newGameBoard.board.tiles);
+    const thisDraw = checkDrawCondition(newGameBoard.board);
     if (thisWin) {
       newGameBoard.blockCells();
       document.getElementById('info').innerText = 'Congratulations!';
@@ -88,8 +131,10 @@ const gameLogic = () => {
       cell.addEventListener('click', () => {
         if (player1.playerTurn) {
           cell.innerHTML = 'X';
+          newGameBoard.board.tiles[index] = 'X';
         } else {
           cell.innerHTML = 'O';
+          newGameBoard.board.tiles[index] = 'O';
         }
         newGameBoard.setCell(index, cell.innerHTML);
         turnEnd();

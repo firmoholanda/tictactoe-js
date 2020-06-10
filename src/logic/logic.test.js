@@ -63,9 +63,3 @@ test('Draw condition should be true', () => {
 test('player 1 turn should be true', () => {
   expect(newGame.player1.playerTurn).toBe(true);
 });
-
-test('player turn should change', () => {
-  expect(newGame.player1.playerTurn).toBe(true);
-  newGame.turnEnd(newGame.player1, newGame.player2);
-  expect(newGame.player1.playerTurn).toBe(false);
-});
