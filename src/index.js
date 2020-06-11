@@ -1,78 +1,57 @@
 // import game logic
-import player from './controller/player';
-import board from './controller/board';
+import Player from './controller/player';
+import Board from './controller/board';
 
-console.log(game);
+let player01, player02;
+const tileset = [];
+const newGameBoard = new Board;
 
+// add event listiner to buttons
+document.getElementById('gameStart').addEventListener('click', () => {
+  startGame();
+});
 
-
-  const blockCells = () => {
-    const cells = document.querySelectorAll('.cell');
-    [...cells].forEach(cell => { cell.style.pointerEvents = 'none'; });
-  };
-
-  const unblockCells = () => {
-    const cells = document.querySelectorAll('.cell');
-    [...cells].forEach(cell => { cell.style.pointerEvents = 'auto'; });
-  };
-
-  const init = () => {
-    for (let i = 0; i < 9; i += 1) {
-      document.getElementById('cell' + i).innerHTML = ''; // eslint-disable-line prefer-template
-    }
-    document.getElementById('winner-text').innerHTML = '';
-    unblockCells();
-  };
-
-  const setCell = (index, symbol) => {
-    board[index] = symbol;
-  };
+document.getElementById('btnReset').addEventListener('click', () => {
+  window.location.reload();
+});
 
 
+const blockCells = () => {
+  const cells = document.querySelectorAll('.cell');
+  [...cells].forEach(cell => { cell.style.pointerEvents = 'none'; })
+}
 
+const unblockCells = () => {
+  const cells = document.querySelectorAll('.cell');
+  [...cells].forEach(cell => { cell.style.pointerEvents = 'auto'; })
+}
+
+const initializeBoad = () => {
+  for (let i = 0; i < 9; i += 1) {
+    document.getElementById('cell' + i).innerHTML = '';
+  }
+  document.getElementById('winner-text').innerHTML = '';
+  unblockCells();
+}
+
+const setCell = (index, symbol) => {
+  board[index] = symbol;
+}
 
 const setTile = () => {
   for (let i = 0; i < 9; i += 1) {
-    tileset[i] = document.getElementById('cell' + i); // eslint-disable-line prefer-template
+    tileset[i] = document.getElementById('cell' + i)
   }
-};
+}
 
-const init = () => {
-  newGameBoard.init();
-  player1 = newPlayer(document.getElementById('player01Name').value, 'X', true);
-  player2 = newPlayer(document.getElementById('player02Name').value, 'O', false);
-  document.getElementById('info').innerText = `${player1.playerName} 's move`;
-  setTile();
-};
-
-const checkWinCondition = board => {
-  let isWin = false;
-  if (board.tiles[0] != null && board.tiles[0] === board.tiles[1] && board.tiles[1] === board.tiles[2]) isWin = true;
-  if (board.tiles[3] != null && board.tiles[3] === board.tiles[4] && board.tiles[4] === board.tiles[5]) isWin = true;
-  if (board.tiles[6] != null && board.tiles[6] === board.tiles[7] && board.tiles[7] === board.tiles[8]) isWin = true;
-  if (board.tiles[0] != null && board.tiles[0] === board.tiles[3] && board.tiles[3] === board.tiles[6]) isWin = true;
-  if (board.tiles[1] != null && board.tiles[1] === board.tiles[4] && board.tiles[4] === board.tiles[7]) isWin = true;
-  if (board.tiles[2] != null && board.tiles[2] === board.tiles[5] && board.tiles[5] === board.tiles[8]) isWin = true;
-  if (board.tiles[0] != null && board.tiles[0] === board.tiles[4] && board.tiles[4] === board.tiles[8]) isWin = true;
-  if (board.tiles[6] != null && board.tiles[6] === board.tiles[4] && board.tiles[4] === board.tiles[2]) isWin = true;
-  return isWin;
-};
-
-const checkDrawCondition = board => {
-  let isDraw = true;
-  if (board.tiles.includes(null)) {
-    isDraw = false;
-  }
-  return isDraw;
-};
 
 const turnEnd = () => {
-  [player1.playerTurn, player2.playerTurn] = [player2.playerTurn, player1.playerTurn];
+  [player01.turn, player02.turn] = [player02.turn, player01.turn];
 
-  if (player1.playerTurn) {
-    document.getElementById('info').innerText = `${player1.playerName} 's move`;
+  if (player01.turn) {
+    document.getElementById('info').innerText = `${player01.name} 's move`;
   } else {
-    document.getElementById('info').innerText = `${player2.playerName} 's move`;
+    document.getElementById('info').innerText = `${player02.name} 's move`;
   }
 };
 
@@ -97,12 +76,12 @@ const checkResult = () => {
 const moveTile = () => {
   function addTableCellEventListener(cell, index) {
     cell.addEventListener('click', () => {
-      if (player1.playerTurn) {
+      if (player01.turn) {
         cell.innerHTML = 'X';
-        newGameBoard.board.tiles[index] = 'X';
+        newGameBoard.tiles[index] = 'X';
       } else {
         cell.innerHTML = 'O';
-        newGameBoard.board.tiles[index] = 'O';
+        newGameBoard.tiles[index] = 'O';
       }
       newGameBoard.setCell(index, cell.innerHTML);
       turnEnd();
@@ -117,15 +96,13 @@ const moveTile = () => {
 };
 
 const startGame = () => {
-  newGameLogic.init();
-  newGameLogic.moveTile();
+
+  let player01 = new Player(document.getElementById('player01Name').value, 'X', true);
+  let player02 = new Player(document.getElementById('player02Name').value, 'O', false);
+
+  document.getElementById('info').innerText = `${player01.name} 's move`;
+  setTile();
+
+  moveTile();
   document.getElementById('btnNewGame').style.display = 'none';
 };
-
-document.getElementById('gameStart').addEventListener('click', () => {
-  startGame();
-});
-
-document.getElementById('btnReset').addEventListener('click', () => {
-  window.location.reload();
-});
