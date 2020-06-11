@@ -3,23 +3,9 @@ import game from './logic/logic';
 
 console.log(game);
 
-const newPlayer = (name, symbol, turn) => {
-  const playerName = name;
-  const token = symbol;
-  const playerTurn = turn;
-  return {
-    playerName,
-    token,
-    playerTurn
-  };
-};
 
-const newBoard = () => {
-  const tiles = [null, null, null, null, null, null, null, null, null];
-  return {
-    tiles
-  }
-};
+
+
 
 const gameBoard = () => {
   let board = newBoard();

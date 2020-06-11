@@ -1,4 +1,4 @@
-const game = require('./logic');
+const game = require('../controller/logic');
 
 const newGame = game();
 
