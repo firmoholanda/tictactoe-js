@@ -1,10 +1,9 @@
-const newPlayer = (name, symbol, turn) => {
-  const playerName = name;
-  const token = symbol;
-  const playerTurn = turn;
-  return {
-    playerName,
-    token,
-    playerTurn
-  };
-};
+class Player {
+  constructor(name, token, turn) {
+    this.name = name;
+    this.token = token;
+    this.turn = turn;
+  }
+}
+
+export default Player;
