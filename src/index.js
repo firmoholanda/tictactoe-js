@@ -2,20 +2,21 @@
 import Player from './controller/player';
 import Board from './controller/board';
 
-let player01, player02;
+let player01;
+let player02;
 const newGameBoard = Board();
-let tileset = [];
+const tileset = [];
 
 // add event listiner to buttons
 
 const blockCells = () => {
   const cells = document.querySelectorAll('.cell');
-  [...cells].forEach(cell => { cell.style.pointerEvents = 'none'; })
+  [...cells].forEach(cell => { cell.style.pointerEvents = 'none'; });
 };
 
 const unblockCells = () => {
   const cells = document.querySelectorAll('.cell');
-  [...cells].forEach(cell => { cell.style.pointerEvents = 'auto'; })
+  [...cells].forEach(cell => { cell.style.pointerEvents = 'auto'; });
 };
 
 const initializeBoard = () => {
@@ -28,7 +29,7 @@ const initializeBoard = () => {
 
 const setTile = () => {
   for (let i = 0; i < 9; i += 1) {
-    tileset[i] = document.getElementById(`cell${i}`)
+    tileset[i] = document.getElementById(`cell${i}`);
   }
 };
 

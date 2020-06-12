@@ -31,7 +31,7 @@ const Board = (() => {
     if (player1.turn === true) {
       return player1;
     }
-      return player2;
+    return player2;
   };
 
   const changeTurn = (player1, player2) => {
