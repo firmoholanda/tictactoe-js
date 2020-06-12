@@ -3,8 +3,8 @@ import Player from './controller/player';
 import Board from './controller/board';
 
 let player01, player02;
-const tileset = [];
-const newGameBoard = new Board;
+const newGameBoard = Board();
+let tileset = [];
 
 // add event listiner to buttons
 document.getElementById('gameStart').addEventListener('click', () => {
@@ -26,16 +26,12 @@ const unblockCells = () => {
   [...cells].forEach(cell => { cell.style.pointerEvents = 'auto'; })
 }
 
-const initializeBoad = () => {
+const initializeBoard = () => {
   for (let i = 0; i < 9; i += 1) {
     document.getElementById('cell' + i).innerHTML = '';
   }
   document.getElementById('winner-text').innerHTML = '';
   unblockCells();
-}
-
-const setCell = (index, symbol) => {
-  board[index] = symbol;
 }
 
 const setTile = () => {
@@ -46,27 +42,27 @@ const setTile = () => {
 
 
 const turnEnd = () => {
-  [player01.turn, player02.turn] = [player02.turn, player01.turn];
 
   if (player01.turn) {
     document.getElementById('info').innerText = `${player01.name} 's move`;
   } else {
     document.getElementById('info').innerText = `${player02.name} 's move`;
   }
+  newGameBoard.changeTurn(player01, player02);
 };
 
 const checkResult = () => {
-  const thisWin = checkWinCondition(newGameBoard.board);
-  const thisDraw = checkDrawCondition(newGameBoard.board);
+  const thisWin = newGameBoard.checkWinCondition();
+  const thisDraw = newGameBoard.checkDrawCondition();
 
   if (thisWin) {
-    newGameBoard.blockCells();
+    blockCells();
     document.getElementById('info').innerText = 'Congratulations!';
     document.getElementById('winner-text').innerText = 'Winner!';
     document.getElementById('btnReset').style.display = 'inline';
   }
   if (thisDraw) {
-    newGameBoard.blockCells();
+    blockCells();
     document.getElementById('info').innerText = 'game over';
     document.getElementById('winner-text').innerText = 'Draw!';
     document.getElementById('btnReset').style.display = 'inline';
@@ -76,6 +72,7 @@ const checkResult = () => {
 const moveTile = () => {
   function addTableCellEventListener(cell, index) {
     cell.addEventListener('click', () => {
+      //newGameBoard.setTile(newGameBoard.currentPlayer(player01, player02), index)
       if (player01.turn) {
         cell.innerHTML = 'X';
         newGameBoard.tiles[index] = 'X';
@@ -83,7 +80,7 @@ const moveTile = () => {
         cell.innerHTML = 'O';
         newGameBoard.tiles[index] = 'O';
       }
-      newGameBoard.setCell(index, cell.innerHTML);
+      setTile();
       turnEnd();
       checkResult();
       cell.style.pointerEvents = 'none';
@@ -96,10 +93,9 @@ const moveTile = () => {
 };
 
 const startGame = () => {
-
-  let player01 = new Player(document.getElementById('player01Name').value, 'X', true);
-  let player02 = new Player(document.getElementById('player02Name').value, 'O', false);
-
+  initializeBoard();
+  player01 = Player(document.getElementById('player01Name').value, 'X', true);
+  player02 = Player(document.getElementById('player02Name').value, 'O', false);
   document.getElementById('info').innerText = `${player01.name} 's move`;
   setTile();
 

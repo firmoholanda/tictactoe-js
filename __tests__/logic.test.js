@@ -1,65 +1,38 @@
-const game = require('./logic');
-
-const newGame = game();
+import Board from '../src/controller/board';
+import Player from '../src/controller/player';
+const newGameBoard = Board();
+const player1 = Player('tom', 'X', true);
+const player2 = Player('robert', 'O', false);
 
 test('player name should be tom', () => {
-  expect(newGame.player1.playerName).toEqual('tom');
+  expect(player1.name).toEqual('tom');
 });
 
 test('player name should be robert', () => {
-  expect(newGame.player2.playerName).toEqual('robert');
+  expect(player2.name).toEqual('robert');
 });
 
 test('board should have a null array', () => {
-  expect(newGame.board.tiles).toEqual([null, null, null, null, null, null, null, null, null]);
+  expect(newGameBoard.tiles).toEqual([null, null, null, null, null, null, null, null, null]);
 });
 
 test('Draw condition should be false', () => {
-  expect(newGame.checkDrawCondition(newGame.board)).toEqual(false);
+  expect(newGameBoard.checkDrawCondition()).toEqual(false);
 });
 
 test('board should have first tile changed to X', () => {
-  newGame.moveTile(0, newGame.board, newGame.player1);
-  expect(newGame.board.tiles).toEqual(['X', null, null, null, null, null, null, null, null]);
+  newGameBoard.setTile(player1, 0);
+  expect(newGameBoard.tiles).toEqual(['X', null, null, null, null, null, null, null, null]);
 });
 
 test('Win condition should be false', () => {
-  newGame.moveTile(0, newGame.board, newGame.player1);
-  expect(newGame.checkWinCondition(newGame.board)).toEqual(false);
+  newGameBoard.setTile(player1, 0);
+  expect(newGameBoard.checkWinCondition()).toEqual(false);
 });
 
 test('Win condition should be true for condition 1', () => {
-  newGame.moveTile(0, newGame.board, newGame.player1);
-  newGame.moveTile(1, newGame.board, newGame.player1);
-  newGame.moveTile(2, newGame.board, newGame.player1);
-  expect(newGame.checkWinCondition(newGame.board)).toEqual(true);
-});
-
-test('Win condition should be true for condition 2', () => {
-  newGame.moveTile(3, newGame.board, newGame.player1);
-  newGame.moveTile(4, newGame.board, newGame.player1);
-  newGame.moveTile(5, newGame.board, newGame.player1);
-  expect(newGame.checkWinCondition(newGame.board)).toEqual(true);
-});
-
-test('Win condition should be true for condition 3', () => {
-  newGame.moveTile(6, newGame.board, newGame.player1);
-  newGame.moveTile(7, newGame.board, newGame.player1);
-  newGame.moveTile(8, newGame.board, newGame.player1);
-  expect(newGame.checkWinCondition(newGame.board)).toEqual(true);
-});
-
-test('Win condition should be true for condition 4', () => {
-  newGame.moveTile(0, newGame.board, newGame.player1);
-  newGame.moveTile(3, newGame.board, newGame.player1);
-  newGame.moveTile(6, newGame.board, newGame.player1);
-  expect(newGame.checkWinCondition(newGame.board)).toEqual(true);
-});
-
-test('Draw condition should be true', () => {
-  expect(newGame.checkDrawCondition(newGame.board)).toEqual(true);
-});
-
-test('player 1 turn should be true', () => {
-  expect(newGame.player1.playerTurn).toBe(true);
+  newGameBoard.setTile(player1, 0);
+  newGameBoard.setTile(player1, 1);
+  newGameBoard.setTile(player1, 2);
+  expect(newGameBoard.checkWinCondition()).toEqual(true);
 });
