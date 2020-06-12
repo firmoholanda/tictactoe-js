@@ -7,42 +7,33 @@ const newGameBoard = Board();
 let tileset = [];
 
 // add event listiner to buttons
-document.getElementById('gameStart').addEventListener('click', () => {
-  startGame();
-});
-
-document.getElementById('btnReset').addEventListener('click', () => {
-  window.location.reload();
-});
-
 
 const blockCells = () => {
   const cells = document.querySelectorAll('.cell');
   [...cells].forEach(cell => { cell.style.pointerEvents = 'none'; })
-}
+};
 
 const unblockCells = () => {
   const cells = document.querySelectorAll('.cell');
   [...cells].forEach(cell => { cell.style.pointerEvents = 'auto'; })
-}
+};
 
 const initializeBoard = () => {
   for (let i = 0; i < 9; i += 1) {
-    document.getElementById('cell' + i).innerHTML = '';
+    document.getElementById(`cell${i}`).innerHTML = '';
   }
   document.getElementById('winner-text').innerHTML = '';
   unblockCells();
-}
+};
 
 const setTile = () => {
   for (let i = 0; i < 9; i += 1) {
-    tileset[i] = document.getElementById('cell' + i)
+    tileset[i] = document.getElementById(`cell${i}`)
   }
-}
+};
 
 
 const turnEnd = () => {
-
   if (player01.turn) {
     document.getElementById('info').innerText = `${player01.name} 's move`;
   } else {
@@ -72,7 +63,6 @@ const checkResult = () => {
 const moveTile = () => {
   function addTableCellEventListener(cell, index) {
     cell.addEventListener('click', () => {
-      //newGameBoard.setTile(newGameBoard.currentPlayer(player01, player02), index)
       if (player01.turn) {
         cell.innerHTML = 'X';
         newGameBoard.tiles[index] = 'X';
@@ -102,3 +92,11 @@ const startGame = () => {
   moveTile();
   document.getElementById('btnNewGame').style.display = 'none';
 };
+
+document.getElementById('gameStart').addEventListener('click', () => {
+  startGame();
+});
+
+document.getElementById('btnReset').addEventListener('click', () => {
+  window.location.reload();
+});

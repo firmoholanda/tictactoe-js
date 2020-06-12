@@ -8,7 +8,7 @@ const Player = ((pName, pToken, pTurn) => {
   return {
     name,
     token,
-    turn
+    turn,
   };
 });
 

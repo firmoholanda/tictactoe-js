@@ -31,9 +31,7 @@ const Board = (() => {
     if (player1.turn === true) {
       return player1;
     }
-    else {
       return player2;
-    }
   };
 
   const changeTurn = (player1, player2) => {
@@ -46,7 +44,7 @@ const Board = (() => {
     checkDrawCondition,
     setTile,
     currentPlayer,
-    changeTurn
+    changeTurn,
   };
 });
 
