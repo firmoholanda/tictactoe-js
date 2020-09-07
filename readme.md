@@ -1,6 +1,6 @@
 # 📃 tictactoe-js
 
-tictactoe-js
+tic tac toe game made with javascript that you can play in your browser.
 
 
 
